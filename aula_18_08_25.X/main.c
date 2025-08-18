@@ -1,5 +1,19 @@
 #include <xc.h>
 
+typedef void(*f_ptr)(void);
+
+typedef enum {READY = 0, RUNNING, WAITING} state_t;
+
+typedef struct tcb{
+    unsigned int id;
+    state_t task_state;
+    f_ptr   task_ptr;
+} tcb_t;
+
+
+tcb_t f_aptos[2];
+
+void create_task(unsigned int id, f_ptr task_f);
 
 void tarefa_led_vermelho();
 void tarefa_led_amarelo();
@@ -11,11 +25,17 @@ void config_timer1();
 void __attribute__((interrupt_no_auto_psv)) _T1Interrupt(void);
 
 int vez = 0; 
+int qtd_tasks = 0;
 
 int main(){
     
     config_ports();
     config_timer1();
+    
+    //Criar tarefas
+    create_task(1, tarefa_led_vermelho);
+    create_task(2, tarefa_led_amarelo);
+    
     
     __builtin_enable_interrupts();
     
@@ -59,15 +79,20 @@ void __attribute__((interrupt_no_auto_psv)) _T1Interrupt(void){
     if(IFS0bits.T1IF == 1){
         IFS0bits.T1IF == 0;
         
-        switch(vez){
-            
-            case 0: tarefa_led_vermelho();
-                    break;
-            case 1: tarefa_led_amarelo();
-                    break;
-        }
+        f_aptos[vez].task_ptr(); //chamando tarefa
         vez = (vez+1) % 2 ;
         PR1 = 10;
     }
+    
+}
+
+
+void create_task(unsigned int id, f_ptr task_f){
+    
+    f_aptos[qtd_tasks].id   = id;
+    f_aptos[qtd_tasks].task_ptr   = task_f;
+    f_aptos[qtd_tasks].task_state   = READY;
+    qtd_tasks++;
+    
     
 }
