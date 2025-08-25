@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 typedef void(*f_ptr)(void);
 
 typedef enum {READY = 0, RUNNING, WAITING} state_t;
