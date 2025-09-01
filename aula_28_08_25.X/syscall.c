@@ -1,8 +1,11 @@
 #include "syscall.h"
+#include "kernel.h"
+#include <xc.h>
 
+//Declaração fila de aptos
+extern f_aptos_t readyQueue;
 
-
-void os_create_taks(uint8_t id, f_ptr task_f, uint8_t prior)
+void os_create_task(uint8_t id, f_ptr task_f, uint8_t prior)
 {
     tcb_t new_task;
     
@@ -17,6 +20,7 @@ void os_create_taks(uint8_t id, f_ptr task_f, uint8_t prior)
     new_task.task_sp        = &new_task.STACK_reg[0];
     
     //Inserir tarefa na fila de aptos
+    readyQueue.readyQueue[readyQueue.readyQueueSize++] = new_task;
     
     
     
@@ -25,14 +29,44 @@ void os_create_taks(uint8_t id, f_ptr task_f, uint8_t prior)
 void os_delay(uint8_t time)
 {
     
+    di();
+    
+    readyQueue.taskRunning->task_time_to_waiting = time;
+    SAVE_CONTEXT(WAITING);
+    
+    //Escalonador
+    readyQueue.taskRunning = scheduler();
+    RESTORE_CONTEXT();
+    
+    ei();
+    
 }
 
 void os_yield()
 {
+    di();
+    SAVE_CONTEXT(READY);
+    
+    //Escalonador
+    readyQueue.taskRunning = scheduler();
+    RESTORE_CONTEXT();
+    
+    ei();
+    
     
 }
 
 void os_change_state(state_t new_state)
 {
+    di();
+    
+    SAVE_CONTEXT(new_state);
+    
+    //Escalonador
+    readyQueue.taskRunning = scheduler();
+    RESTORE_CONTEXT();
+    
+    ei();
+    
     
 }

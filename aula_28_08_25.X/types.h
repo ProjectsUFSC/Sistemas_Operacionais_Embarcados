@@ -12,6 +12,13 @@
 #include <stdint.h>
 #include "os_config.h"
 
+#define RR_SCHEDULER    1
+#define PRIORITY_SCHEDULER 2
+
+
+//Define o tipo tarefa
+typedef void TASK;
+
 //Define o ponteiro para a função
 typedef void (*f_ptr)(void);
 
@@ -24,6 +31,7 @@ typedef struct tcb{
     f_ptr   task_func;
     state_t task_state;
     uint8_t task_priority;
+    uint8_t task_time_to_waiting; 
     
     //Contexto de hardware
     uint8_t BSR_reg;            // Bank select register
@@ -35,7 +43,6 @@ typedef struct tcb{
 } tcb_t;
 
 //Fila de aptos
-
 typedef struct f_aptos{
     tcb_t   readyQueue[MAX_TASK_ON_READY_QUEUE];
     uint8_t readyQueueSize;
