@@ -1,8 +1,8 @@
 /* 
  * File:   scheduler.h
- * Author: augustodaleffe
+ * Author: Anderson L. F. Perez
  *
- * Created on September 1, 2025, 3:29 PM
+ * Created on 28 de Agosto de 2025, 16:31
  */
 
 #ifndef SCHEDULER_H
@@ -10,17 +10,10 @@
 
 #include "types.h"
 
-tcb_t *rr_scheduler();
-tcb_t *priority_scheduler();
-tcb_t *scheduler();
+tcb_t *rr_scheduler(void);
+tcb_t *priority_scheduler(void);
+void scheduler(void);
 
-
-
-
-
-#ifdef	__cplusplus
-}
-#endif
 
 #endif	/* SCHEDULER_H */
 
