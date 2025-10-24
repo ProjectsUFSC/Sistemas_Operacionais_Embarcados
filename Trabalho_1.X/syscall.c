@@ -3,7 +3,7 @@
 #include "kernel.h"
 #include "scheduler.h"
 
-// Declaração da fila de aptos
+// Declara??o da fila de aptos
 extern f_aptos_t readyQueue;
 
 void os_create_task(uint8_t id, f_ptr task_f, uint8_t prior)
