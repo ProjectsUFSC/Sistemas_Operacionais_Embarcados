@@ -10,10 +10,10 @@
 // Define o tipo tarefa
 typedef void TASK;
 
-// Define o ponteiro para a função
+// Define o ponteiro para a fun??o
 typedef void (*f_ptr)(void);
 
-// Define os estados possíveis
+// Define os estados poss?veis
 typedef enum {READY = 0, RUNNING, WAITING, WAITING_SEM} state_t;
 
 // Define a TCB 
@@ -27,7 +27,7 @@ typedef struct tcb {
     uint8_t     BSR_reg;
     uint8_t     WORK_reg;
     uint8_t     STATUS_reg;
-    uint24_t     STACK[32];
+    uint24_t    STACK[32];
     uint8_t     task_sp;    
 } tcb_t;
 
@@ -37,6 +37,14 @@ typedef struct f_aptos {
     uint8_t readyQueueSize;
     tcb_t *taskRunning;
 } f_aptos_t;
+
+// Mutex
+typedef struct {
+    unsigned int locked; // Mutex state (0 = free, 1 = ocupied)
+    uint8_t owner; // Mutex owner task ID
+    tcb_t* waiting_tasks[MAX_TASKS_ON_READY_QUEUE]; // Waiting tasks queue
+    uint8_t waiting_count; // Waiting tasks numeber
+} Mutex;
 
 typedef struct semaphore {
     int contador;
