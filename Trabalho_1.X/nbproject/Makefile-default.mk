@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=hardware.c io.c kernel.c main.c mem.c pipe.c scheduler.c sync.c syscall.c user_app.c
+SOURCEFILES_QUOTED_IF_SPACED=hardware.c io.c kernel.c main.c mem.c pipe.c scheduler.c sync.c syscall.c user_app.c mutex.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/hardware.p1 ${OBJECTDIR}/io.p1 ${OBJECTDIR}/kernel.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/mem.p1 ${OBJECTDIR}/pipe.p1 ${OBJECTDIR}/scheduler.p1 ${OBJECTDIR}/sync.p1 ${OBJECTDIR}/syscall.p1 ${OBJECTDIR}/user_app.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/hardware.p1.d ${OBJECTDIR}/io.p1.d ${OBJECTDIR}/kernel.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/mem.p1.d ${OBJECTDIR}/pipe.p1.d ${OBJECTDIR}/scheduler.p1.d ${OBJECTDIR}/sync.p1.d ${OBJECTDIR}/syscall.p1.d ${OBJECTDIR}/user_app.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/hardware.p1 ${OBJECTDIR}/io.p1 ${OBJECTDIR}/kernel.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/mem.p1 ${OBJECTDIR}/pipe.p1 ${OBJECTDIR}/scheduler.p1 ${OBJECTDIR}/sync.p1 ${OBJECTDIR}/syscall.p1 ${OBJECTDIR}/user_app.p1 ${OBJECTDIR}/mutex.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/hardware.p1.d ${OBJECTDIR}/io.p1.d ${OBJECTDIR}/kernel.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/mem.p1.d ${OBJECTDIR}/pipe.p1.d ${OBJECTDIR}/scheduler.p1.d ${OBJECTDIR}/sync.p1.d ${OBJECTDIR}/syscall.p1.d ${OBJECTDIR}/user_app.p1.d ${OBJECTDIR}/mutex.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/hardware.p1 ${OBJECTDIR}/io.p1 ${OBJECTDIR}/kernel.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/mem.p1 ${OBJECTDIR}/pipe.p1 ${OBJECTDIR}/scheduler.p1 ${OBJECTDIR}/sync.p1 ${OBJECTDIR}/syscall.p1 ${OBJECTDIR}/user_app.p1
+OBJECTFILES=${OBJECTDIR}/hardware.p1 ${OBJECTDIR}/io.p1 ${OBJECTDIR}/kernel.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/mem.p1 ${OBJECTDIR}/pipe.p1 ${OBJECTDIR}/scheduler.p1 ${OBJECTDIR}/sync.p1 ${OBJECTDIR}/syscall.p1 ${OBJECTDIR}/user_app.p1 ${OBJECTDIR}/mutex.p1
 
 # Source Files
-SOURCEFILES=hardware.c io.c kernel.c main.c mem.c pipe.c scheduler.c sync.c syscall.c user_app.c
+SOURCEFILES=hardware.c io.c kernel.c main.c mem.c pipe.c scheduler.c sync.c syscall.c user_app.c mutex.c
 
 
 
@@ -168,6 +168,14 @@ ${OBJECTDIR}/user_app.p1: user_app.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/user_app.d ${OBJECTDIR}/user_app.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/user_app.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/mutex.p1: mutex.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/mutex.p1.d 
+	@${RM} ${OBJECTDIR}/mutex.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/mutex.p1 mutex.c 
+	@-${MV} ${OBJECTDIR}/mutex.d ${OBJECTDIR}/mutex.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mutex.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/hardware.p1: hardware.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
@@ -248,6 +256,14 @@ ${OBJECTDIR}/user_app.p1: user_app.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/user_app.p1 user_app.c 
 	@-${MV} ${OBJECTDIR}/user_app.d ${OBJECTDIR}/user_app.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/user_app.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/mutex.p1: mutex.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/mutex.p1.d 
+	@${RM} ${OBJECTDIR}/mutex.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/mutex.p1 mutex.c 
+	@-${MV} ${OBJECTDIR}/mutex.d ${OBJECTDIR}/mutex.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mutex.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

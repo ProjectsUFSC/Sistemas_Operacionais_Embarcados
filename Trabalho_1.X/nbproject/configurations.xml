@@ -15,6 +15,7 @@
       <itemPath>syscall.h</itemPath>
       <itemPath>types.h</itemPath>
       <itemPath>user_app.h</itemPath>
+      <itemPath>mutex.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -38,6 +39,7 @@
       <itemPath>sync.c</itemPath>
       <itemPath>syscall.c</itemPath>
       <itemPath>user_app.c</itemPath>
+      <itemPath>mutex.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
