@@ -3,7 +3,7 @@
 #include "scheduler.h"
 #include <xc.h>
 
-// Declaração da fila de aptos
+// Declara??o da fila de aptos
 extern f_aptos_t readyQueue;
 
 
