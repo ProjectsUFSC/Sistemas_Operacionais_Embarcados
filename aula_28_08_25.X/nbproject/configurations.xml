@@ -10,6 +10,11 @@
       <itemPath>syscall.h</itemPath>
       <itemPath>os_config.h</itemPath>
       <itemPath>scheduler.h</itemPath>
+      <itemPath>hardware.h</itemPath>
+      <itemPath>io.h</itemPath>
+      <itemPath>mem.h</itemPath>
+      <itemPath>pipe.h</itemPath>
+      <itemPath>sync.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -28,6 +33,11 @@
       <itemPath>user_app.c</itemPath>
       <itemPath>syscall.c</itemPath>
       <itemPath>scheduler.c</itemPath>
+      <itemPath>hardware.c</itemPath>
+      <itemPath>io.c</itemPath>
+      <itemPath>mem.c</itemPath>
+      <itemPath>pipe.c</itemPath>
+      <itemPath>sync.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
