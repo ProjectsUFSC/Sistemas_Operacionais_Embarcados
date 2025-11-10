@@ -45,11 +45,11 @@ SemaphoreHandle_t garfos[QTD];
 void config_user_app()
 {
     for (int i = 0; i < QTD; i++) {
-        garfos[i] = xSemaphoreCreateBinary();   // Cria sem?foro
+        garfos[i] = xSemaphoreCreateBinary();   // Cria semáforo
         xSemaphoreGive(garfos[i]);              // Seta em 1
     }
     
-    // Configura??o de portas dos leds que ir?o representar os fil?sofos
+    // Configuração de portas dos leds que irão representar os filósofos
     
 }
 
@@ -282,7 +282,7 @@ void config_user_app()
     // Incializar a fila de mensagens
     mensagem = xQueueCreate(1, sizeof(msg_t))
     
-    // Inicializar o sem?foro contador
+    // Inicializar o semáforo contador
     s_contador = xSemaphoreCreateCounting(4, 0);
     
     // Portas do hardware
