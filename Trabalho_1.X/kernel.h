@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include "types.h"
 
-// Declara??o da fila de aptos
+// Declaração da fila de aptos
 extern f_aptos_t readyQueue;
 
 void os_config(void);
@@ -43,12 +43,12 @@ do { \
         WREG    = readyQueue.taskRunning->WORK_reg; \
         /* Piha */ \
         STKPTR = 0; \
-        /* Primeira execu??o */ \
+        /* Primeira execução */ \
         if (readyQueue.taskRunning->task_sp == 0) { \
             asm("PUSH"); \
             TOS = (uint24_t)readyQueue.taskRunning->task_func; \
         } \
-        else { /* J? executou alguma vez */ \
+        else { /* Já executou alguma vez */ \
             do { \
                 asm("PUSH"); \
                 readyQueue.taskRunning->task_sp--; \

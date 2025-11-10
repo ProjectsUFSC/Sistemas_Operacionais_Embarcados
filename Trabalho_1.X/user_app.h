@@ -29,10 +29,12 @@ void config_app(void);
 
 unsigned int readADC(unsigned char canal);
 void __interrupt() TMR0_ISR(void);
-uint8_t convert_to_duty_cycle(double motor_value);
+uint8_t convert_to_duty_cycle(uint8_t motor_value);
 
 TASK motors_control(void);
 TASK sensors_reading(void);
+TASK battery_monitor(void);
+TASK control_center(void);
 
 #endif
 

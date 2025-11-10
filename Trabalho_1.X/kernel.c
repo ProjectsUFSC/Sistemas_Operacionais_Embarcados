@@ -6,7 +6,7 @@
 #include "mem.h"
 #include <xc.h>
 
-// Declara??o da fila de aptos
+// Declaração da fila de aptos
 f_aptos_t readyQueue;
 
 void os_config(void)
@@ -25,17 +25,17 @@ void os_start(void)
     // Configurar o timer
     conf_interrupts();
     
-    // Configura??o de mem?ria
+    // Configuração de memória
     #if DYNAMIC_MEM_ALLOC == YES
     SRAMInitHeap();
     #endif    
 
-    // Configura??es de usu?rio
+    // Configurações de usuário
     config_app();
     
     conf_timer_0();
    
-    // Habilita interrup??es globais
+    // Habilita interrupções globais
     ei();
 }
 
